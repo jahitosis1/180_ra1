@@ -12,7 +12,9 @@ void printStd(float *d, int N);
 
 int main (int argc, char *argv[]){
   if (argc < 2) {
-    printf("Invalid N! Please try again!\n");
+    printf("Expected N! Please try again!\n");
+    printf("USAGE: ./<program_name> <N>\n");
+    printf("SAMPLE: ./a.out 100\n");
     return 1;
   }
 
