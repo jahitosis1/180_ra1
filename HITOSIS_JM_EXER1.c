@@ -40,6 +40,23 @@ int main (int argc, char *argv[]){
   return 0;
 }
 
+void std(int *X, int row, int column){
+  float *d = (float *) malloc(sizeof(float)*column);
+  for (int j = 0; j < column; j++){
+    d[j] = 0;
+    int a = 0;
+    for (int k = 0; k < row; k++){
+      a += X[k*column + j];
+    }
+    a /= row;
+    for (int i = 0; i < row; i++){
+      d[j] += (X[i*column + j]- a) * (X[i*column + j]- a);
+    }
+    d[j] = sqrt(d[j]/row);
+  }
+  free(d);
+}
+
 void printMatrix(int *X, int i, int j) {
   for (int k = 0; k < i*j; k++){
     printf("%d\t", X[k]);
@@ -52,24 +69,4 @@ void printStd(float *d, int N) {
     printf("%lf\t", d[k]);
   }
   printf("\n");
-}
-
-void std(int *X, int row, int column){
-  float *d = (float *) malloc(sizeof(float)*column);
-  for (int j = 0; j < column; j++){
-    d[j] = 0;
-    int a = 0;
-    for (int k = 0; k < row; k++){
-      a += X[k*row + j];
-    }
-    a /= column;
-    for (int i = 0; i < row; i++){
-      d[j] += (X[i*row + j]- a) * (X[i*row + j]- a);
-    }
-    d[j] = sqrt(d[j]/column);
-  }
-    // 1. find a_j
-    // 2. find d_j
-  // printStd(d, column);
-  free(d);
 }
